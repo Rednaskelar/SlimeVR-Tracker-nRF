@@ -520,7 +520,6 @@ static int sys_gpio_init(void)
 #endif
 #if CLK_EN_EXISTS
 	gpio_pin_configure_dt(&clk_en, GPIO_OUTPUT);
-	gpio_pin_set_raw(clk_en.port, clk_en.pin, 0); // Force physical GND to kill oscillator
 #endif
 #if DCDC_EN_EXISTS
 	gpio_pin_configure_dt(&dcdc_en, GPIO_OUTPUT);
