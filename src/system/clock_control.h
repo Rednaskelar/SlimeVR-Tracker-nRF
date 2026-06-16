@@ -24,6 +24,12 @@ void clock_pre_shutdown(void);
 void clock_init_external(void);
 
 /**
+ * @brief Get the current running LFCLK source
+ * @return A string representation of the source (e.g. "RC", "XTAL", "SYNTH", "STOPPED")
+ */
+const char *clock_get_active_source_name(void);
+
+/**
  * @brief Asynchronously switch to external LF clock (LFXO)
  *
  * This function spawns a new thread to perform the clock switch,

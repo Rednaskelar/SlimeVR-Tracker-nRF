@@ -10,6 +10,7 @@
 #include "connection/esb.h"
 #include "connection/tdma.h"
 #include "build_defines.h"
+#include "system/clock_control.h"
 #include "zephyr/sys/printk.h"
 
 #define USB_EXISTS 0
@@ -111,6 +112,7 @@ static void print_board(void)
 	printk("\nBoard: " CONFIG_BOARD "\n");
 	printk("SOC: " CONFIG_SOC "\n");
 	printk("Target: " CONFIG_BOARD_TARGET "\n");
+	printk("LFCLK Source: %s\n", clock_get_active_source_name());
 }
 
 static void print_sensor(void)

@@ -57,6 +57,25 @@ static bool lfclk_running_source_get(nrf_clock_lfclk_t *source)
 	return running;
 }
 
+const char *clock_get_active_source_name(void)
+{
+	nrf_clock_lfclk_t active_source;
+	bool running = lfclk_running_source_get(&active_source);
+	
+	if (!running) {
+		return "STOPPED";
+	}
+	
+	switch (active_source) {
+		case NRF_CLOCK_LFCLK_RC: return "RC";
+		case NRF_CLOCK_LFCLK_XTAL: return "XTAL";
+#ifdef NRF_CLOCK_LFCLK_SYNTH
+		case NRF_CLOCK_LFCLK_SYNTH: return "SYNTH";
+#endif
+		default: return "UNKNOWN";
+	}
+}
+
 // Safely switch LF clock source
 void clock_switch(nrf_clock_lfclk_t source)
 {
